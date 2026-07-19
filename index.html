@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05080b" />
+  <meta name="description" content="Отдел утилизации: Долг — браузерный психологический хоррор от первого лица." />
+  <title>Отдел утилизации: Долг</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game" width="1280" height="720" aria-label="Игровой экран"></canvas>
+
+    <div id="noise" aria-hidden="true"></div>
+    <div id="vignette" aria-hidden="true"></div>
+
+    <section id="title-screen" class="overlay visible">
+      <div class="title-card">
+        <p class="eyebrow">ОРБИТАЛЬНАЯ СТАНЦИЯ «УТИЛИЗАЦИЯ-7»</p>
+        <h1>ОТДЕЛ УТИЛИЗАЦИИ:<br><span>ДОЛГ</span></h1>
+        <p class="tagline">Вина — единственный монстр, от которого невозможно спрятаться.</p>
+        <button id="start-button" class="primary">НАЧАТЬ СМЕНУ</button>
+        <div class="controls-grid">
+          <span><b>WASD</b> движение</span>
+          <span><b>мышь</b> обзор</span>
+          <span><b>E</b> взаимодействие</span>
+          <span><b>F</b> фонарь</span>
+          <span><b>M</b> карта</span>
+          <span><b>Esc</b> пауза</span>
+        </div>
+        <p class="notice">Наушники рекомендуются. Содержит тяжёлые темы и мерцающий свет.</p>
+      </div>
+    </section>
+
+    <section id="pause-screen" class="overlay">
+      <div class="panel compact">
+        <p class="eyebrow">СИСТЕМА ПРИОСТАНОВЛЕНА</p>
+        <h2>Пауза</h2>
+        <button id="resume-button" class="primary">ПРОДОЛЖИТЬ</button>
+        <button id="restart-button" class="ghost">НАЧАТЬ ЗАНОВО</button>
+      </div>
+    </section>
+
+    <section id="memory-screen" class="overlay">
+      <article class="panel memory-card">
+        <p id="memory-kicker" class="eyebrow">ФРАГМЕНТ ПАМЯТИ</p>
+        <h2 id="memory-title"></h2>
+        <div id="memory-body"></div>
+        <p class="dismiss">Нажмите <b>E</b>, чтобы закрыть</p>
+      </article>
+    </section>
+
+    <section id="act-screen" class="overlay">
+      <div class="act-card">
+        <p id="act-number" class="eyebrow"></p>
+        <h2 id="act-title"></h2>
+        <p id="act-quote"></p>
+      </div>
+    </section>
+
+    <section id="choice-screen" class="overlay">
+      <div class="panel choice-card">
+        <p class="eyebrow">ПОСЛЕДНЯЯ ЗАПИСЬ</p>
+        <h2>Что останется в журнале?</h2>
+        <p>Правда не исправит прошлое. Ложь не даст ему закончиться.</p>
+        <div class="choice-grid">
+          <button id="accept-button" class="choice accept">
+            <span class="choice-index">01</span>
+            <b>ПРИЗНАНИЕ</b>
+            <small>Записать правду и принять ответственность.</small>
+          </button>
+          <button id="deny-button" class="choice deny">
+            <span class="choice-index">02</span>
+            <b>ВЫТЕСНЕНИЕ</b>
+            <small>Назвать аварию сбоем и начать всё сначала.</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="ending-screen" class="overlay">
+      <div class="panel ending-card">
+        <p id="ending-kicker" class="eyebrow"></p>
+        <h2 id="ending-title"></h2>
+        <div id="ending-body"></div>
+        <button id="ending-restart" class="primary">ПРОЙТИ ЕЩЁ РАЗ</button>
+      </div>
+    </section>
+
+    <aside id="hud" class="hidden">
+      <div id="status-block">
+        <div class="status-row"><span>КИСЛОРОД</span><b>19.8%</b></div>
+        <div class="meter"><i id="oxygen-meter"></i></div>
+        <div class="status-row"><span>ЦИКЛ</span><b id="cycle-label">72:14:09</b></div>
+      </div>
+      <div id="objective-block">
+        <p class="eyebrow">ТЕКУЩАЯ ЗАДАЧА</p>
+        <p id="objective-text">Проверить состояние станции.</p>
+      </div>
+      <div id="interaction-hint" class="hidden"><kbd>E</kbd><span id="interaction-text">Осмотреть</span></div>
+      <div id="subtitles"></div>
+      <div id="crosshair"><i></i><i></i></div>
+      <div id="flashlight-indicator">ФОНАРЬ <b>ВКЛ</b></div>
+    </aside>
+
+    <section id="map-panel" class="hidden" aria-label="Карта станции">
+      <div class="map-header">
+        <div>
+          <p class="eyebrow">СХЕМА ОБЪЕКТА</p>
+          <h3>УТИЛИЗАЦИЯ-7</h3>
+        </div>
+        <span>M — закрыть</span>
+      </div>
+      <canvas id="map-canvas" width="720" height="480"></canvas>
+      <div class="legend"><span><i class="you"></i>Олег</span><span><i class="memory"></i>объект памяти</span><span><i class="sealed"></i>гермозона</span></div>
+    </section>
+  </main>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
